@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class ClienteController {
@@ -24,10 +25,17 @@ public class ClienteController {
 
     @FXML
     void guardarCliente(ActionEvent event) {
-        clientes.add(mfc.newCliente(nameCliente.getText(),Integer.parseInt(edadCliente.getText())));
-        System.out.println("Cliente Creado");
-        nameCliente.setText("");
-        edadCliente.setText("");
+        try {
+            clientes.add(mfc.newCliente(nameCliente.getText(),Integer.parseInt(edadCliente.getText())));
+            System.out.println("Cliente Creado");
+            nameCliente.setText("");
+            edadCliente.setText("");
+        }catch (NumberFormatException e){
+            System.out.println("Porfavor ingrese un numero");
+            nameCliente.setText("");
+            edadCliente.setText("");
+        }
+
     }
 
     @FXML
